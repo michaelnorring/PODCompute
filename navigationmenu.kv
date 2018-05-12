@@ -1,0 +1,67 @@
+#:kivy 1.10.1
+
+<NavigationMenu>:
+    pos_hint: {'top': 1}
+    
+    ActionView:
+        use_separator: True
+        
+        ActionPrevious:
+            id: maintitle
+            title: 'POD Compute'
+            with_previous: False
+            app_icon: 'logo.png'
+        ActionOverflow:
+        ActionButton:
+            text: 'Main'
+            index: 0
+            on_press: root.Navigate("ScreenMain")
+        ActionGroup:
+            text: 'Media'
+            mode: 'spinner'
+            index: 1
+            ActionButton:
+                text: 'Movies'
+            ActionButton:
+                text: 'Music'
+            ActionButton:
+                text: 'Pictures'
+        ActionButton:
+            text: 'Config'
+            index: 2
+            on_press: root.Navigate("ScreenConfig")
+        ActionButton:
+            text: 'Maintenance'
+            index: 3
+            on_press: root.Navigate("ScreenMaintenance")
+        ActionButton:
+            text: 'Cluster'
+            index: 4
+        ActionGroup:
+            text: 'Exit'
+            mode: 'spinner'
+            index: 5
+            ActionButton:
+                text: 'Console'
+                on_press: root.Exit()
+            ActionButton:
+                text: 'Reboot'
+                on_press: root.Reboot()
+            ActionButton:
+                text: 'Shutdown'
+                on_press: root.Shutdown()
+
+<ConfirmPopup>:
+    cols:1
+	Label:
+		text: root.text
+	GridLayout:
+		cols: 2
+		size_hint_y: None
+		height: '44sp'
+		Button:
+			text: 'Yes'
+			on_release: root.dispatch('on_answer','yes')
+		Button:
+			text: 'No'
+			on_release: root.dispatch('on_answer', 'no')

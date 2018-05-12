@@ -1,0 +1,29 @@
+#:kivy 1.10.1
+
+<AlarmClockConfig>:
+    BoxLayout:
+        orientation: 'vertical'
+    
+        BoxLayout:
+            id: AlarmRoulette
+                 
+        BoxLayout:
+            orientation: 'horizontal'
+            
+            Button:
+                text: 'Save'
+                size: 100,100
+                size_hint: None, None                  
+                on_press: root.saveAlarm()
+            Widget:
+            Button:
+                text: 'Cancel'
+                size: 100,100
+                size_hint: None, None
+                on_release: root.cancelAlarm()
+        
+        
+            
+
+
+

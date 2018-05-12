@@ -1,0 +1,34 @@
+#:kivy 1.10.1
+
+<Manager>:
+    id: screen_manager
+    name: 'ScreenManager'
+
+    pos: self.pos
+    size: self.size
+
+    screen_main: screen_main
+    screen_maintenance: screen_maintenance
+    screen_config: screen_config
+    screen_clockconfig: screen_clockconfig
+
+    ScreenMain:
+        id: screen_main
+        name: 'ScreenMain'
+        manager: screen_manager
+
+    ScreenMaintenance:
+        id: screen_maintenance
+        name: 'ScreenMaintenance'
+        manager: screen_manager
+
+    ScreenConfig:
+        id: screen_config
+        name: 'ScreenConfig'
+        manager: screen_manager
+
+    ScreenClockConfig:
+        id: screen_clockconfig
+        name: 'ScreenClockConfig'
+        manager: screen_manager
+

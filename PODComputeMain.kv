@@ -1,0 +1,17 @@
+#:kivy 1.10.1
+
+<MainApp>:
+    
+    pos_hint: {'left': 1, 'top': 1}
+
+    BoxLayout:
+        pos: root.pos
+        size: root.size
+        size_hint: None, None
+        pos_hint: None, None
+        orientation: 'vertical'
+        NavigationMenu:
+            id: nav
+        Manager:
+            id: manager
+

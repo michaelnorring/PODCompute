@@ -1,0 +1,113 @@
+#:kivy 1.10.1
+
+<ScreenMain>:
+    GridLayout:
+        cols: 2
+        rows: 2
+        size: root.size
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'ScreenBackground.png'
+
+        ClockControl:
+            manager: root.manager
+
+        TemperatureControl:
+            id: IndoorTemperatureControl
+            manager: root.manager
+            temperatureLabel: 'Indoor Temperature'
+
+        Widget:
+         
+        TemperatureControl:
+            id: ComputeTemperatureControl 
+            manager: root.manager 
+            temperatureLabel: 'Compute Temperature'
+        
+            
+                    
+<ClockControl>:          
+    
+    #size_hint: (None, None)
+    #size: 350, 100
+    BoxLayout:
+        orientation: 'horizontal'
+        pos: root.pos
+        size: root.size
+
+        BoxLayout:
+            orientation: 'vertical'
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            size: 300, 100
+            size_hint: None, None
+
+            Label:
+                id: DateLabel
+                font_size: 0.4*self.height   #10sp
+                color: .89, .98, .88, 1
+                #pos_hint: {'left': 1, 'top': 1}
+                size: (self.width, self.height)
+
+            Label:
+                id: TimeLabel
+                font_size: 0.8*self.height  #24
+                color: .89, .98, .88, 1
+                #pos_hint: {'center_x': .5, 'center_y': .5}
+                size: (self.width, self.height)
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: None, None
+            size: 300, 50
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            
+            Button:
+                background_normal: 'trans-gears.png'
+                size_hint: None, None
+                size: 50, 50               
+                on_press: root.ClockConfig()
+                
+            BoxLayout:
+                id: alarmOn_button
+                size_hint: None, None
+                size: 50, 50
+                pos: self.pos
+
+<TemperatureControl>: 
+    #size_hint: (None, None)
+    #size: 300, 150
+    #pos: self.pos
+    BoxLayout:       
+        orientation: 'vertical'
+        pos: root.pos
+        size: root.size
+        canvas:
+            Color: 
+                rgba: .1, .1, 1, .9
+            Line:
+                width: 5.
+                circle: (root.center_x, root.center_y + 25, 60)
+
+        Label:
+            #pos_hint: {'center_x': .5, 'center_y': .5}
+            size: (root.width, root.height - 50)
+            size_hint: (None, None)
+            
+            id: TemperatureLabel
+            font_size: '24sp'
+            text: '--' + u"\u00b0"
+            
+        Label:
+            id: HumidityLabel
+            font_size: '10sp'
+        
+        Label:
+            #pos_hint: {'center_x': .5, 'bottom': .1}
+            size: (root.width, 50)
+            size_hint: (None, None)
+            font_size: '10sp'
+            text: root.temperatureLabel
+
+                
+

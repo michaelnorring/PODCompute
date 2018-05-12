@@ -1,0 +1,75 @@
+#:kivy 1.10.1
+
+<ScreenConfig>:
+    on_enter: root.SetupScreen()
+    
+    FloatLayout:
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'ScreenBackground.png'
+
+        BoxLayout:
+            orientation: 'horizontal'
+            pos_hint: {'left': 1, 'top':1}
+            size: 500, 300
+            size_hint: (None, None)
+            spacing: 5
+
+            BoxLayout:
+                orientation: 'vertical'
+                halign: 'right'
+
+                Label:
+                    text: 'Interface: '
+                    
+                Label:
+                    text: 'Status: '
+
+                Label:
+                    text: 'IP Address: '
+
+                Label:
+                    text: 'MAC Address: '
+
+                Label:
+                    text: 'Broadcast IP: '
+
+                Label:
+                    text: 'Network Mask: '
+                
+                Label:
+                    text: 'OS: '
+        
+            BoxLayout:
+                orientation: 'vertical'
+                
+                Label:
+                    id: IFace
+                    name: 'IFace'
+                
+                Label:
+                    id: Status
+                    name: 'Status'
+
+                Label:
+                    id: IPAddress
+                    name: 'IPAddress'
+                    
+                Label:
+                    id: MACAddress
+                    name: 'MACAddress'
+                
+                Label:
+                    id: BCast
+                    name: 'BCast'
+
+                Label:
+                    id: NMask
+                    name: 'NMask'
+
+                Label:
+                    id: OS
+                    name: 'OS'
+                    

@@ -1,0 +1,113 @@
+#:kivy 1.10.1
+
+<ScreenClockConfig>:
+    on_enter: root.SetupScreen()
+
+    TabbedPanel:
+        size_hint: .9, .9
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        do_default_tab: False
+        tab_pos: 'left_top'
+        background_color: (1, 0, 0, .2) #50% translucent red
+
+        FloatLayout:
+            BoxLayout:
+                id: Alarm_panel
+                orientation: 'vertical'
+                
+                BoxLayout:
+                    id: Alarm_Header
+                    orientation: 'horizontal'
+                    size: Alarm_panel.width, 75
+                    size_hint: (None, None)
+
+                    canvas:
+                        Color: 
+                            rgba: .1, .1, 1, .9
+                        Line:
+                            width: 1.
+                            rectangle: (self.x + 25, self.y, self.width - 50, 2)
+
+                    Label:
+                        text: 'Alarm'
+                    Button:
+                        size: 50, 50
+                        size_hint: None, None
+                        pos_hint: {'right': 1, 'center_y': .5}
+                        text: '+'  
+                        on_press: root.on_AddButton_Press()
+                ScrollView:  
+                    GridLayout:
+                        id: Alarm_content
+                        cols: 1
+                        size_hint_y: None
+                        height: self.minimum_height
+                        orientation: 'vertical'
+                        Label:
+                            text: 'No Alarms'    
+            BoxLayout:
+                id: WorldClock_panel
+                Label:
+                Button:
+                    text: 'Set Clock'
+                    size_hint: None, None
+                    size: 200, 75
+                    pos_hint: {'center_y': .5}
+                    on_press: root.on_SetClockButton_Press()
+                Label:
+        TabbedPanelHeader:
+            id: AlarmTab
+            content: Alarm_panel.__self__
+            
+            BoxLayout:
+                pos: AlarmTab.pos
+                size: AlarmTab.size
+                Label:
+                    text: 'Alarm'
+        TabbedPanelHeader:
+            id: WorldClockTab
+            content: WorldClock_panel.__self__
+            
+            BoxLayout:
+                pos: WorldClockTab.pos
+                size: WorldClockTab.size
+                Label:
+                    text: 'Clock'
+
+<AlarmItem>:
+    size_hint_y: None
+    size: self.width, 75
+
+    Label:
+    Label:
+        size_hint_x: None
+        width: 150
+        text: root.alarm_time
+        font_size: 0.6*self.height  
+    Label:
+        text: root.alarm_ampm
+        size_hint_x: None
+        width: 70
+        font_size: 0.6*self.height
+    Label:
+    ToggleButton:
+        id: OnOffButton
+        size_hint_x: None
+        width: 75
+        text: root.alarm_onoff
+        on_press: root.on_OnOffStateChange()
+    Button:
+        size_hint_x: None
+        width: 100
+        text: 'Delete'
+        on_press: root.delete()
+
+
+        
+
+    
+        
+            
+
+
+
