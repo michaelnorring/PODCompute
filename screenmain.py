@@ -79,7 +79,8 @@ class ScreenMain(Screen):
                 sensor = Adafruit_DHT.DHT22
                 pin = 22
                 indoorHumidity, indoorTemperature = Adafruit_DHT.read_retry(sensor, pin) 
-                indoorTemp = indoorTemperature * 9/5.0 + 32
+                indoorTemp = indoorTemperature
+                indoorHumidity = round(indoorHumidity, 2)
         except:
             pass
 
