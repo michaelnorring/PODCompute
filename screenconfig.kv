@@ -51,6 +51,10 @@
                         name: 'OS'
 
             BoxLayout:
+                Label:
+                    size: 100, self.height
+                    size_hint: (None, 1)
+
                 ScrollView:
                     Label:
                         id: Status
@@ -59,3 +63,7 @@
                         size_hint_y: None
                         text_size: self.width, None
                         height: self.texture_size[1]
+                
+                Label:
+                    size: 100, self.height
+                    size_hint: (None, 1)
