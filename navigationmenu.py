@@ -73,7 +73,7 @@ class NavigationMenu(ActionBar):
             #if RaspberryPI
             if platform == "linux" or platform == "linux2":
                 _manager.KillServices()
-                os.system('sudo shutdown -hs now')
+                os.system('sudo shutdown -P now')
             
             #if Mac OS X
             elif platform == "darwin":
