@@ -14,6 +14,7 @@ class ComputeTemperatureService():
     OnOff = 'Off'
     timer = None
     clockInterval = 60
+    ComputeTemperature = None
 
     def __init__(self):
         if platform == 'linux' or platform == 'linux2':
@@ -74,14 +75,15 @@ class ComputeTemperatureService():
             if not self.timer:
                 self.timer = Clock.schedule_interval(self.CheckTemperature, self.clockInterval)
         else:
+            self.CheckTemperature()
             if self.timer:
                 self.timer.cancel()
     
     def CheckTemperature(self, *args):       
         if self.OnOff == 'On':
             # check if computetemp is higher than self.temparate (fantemp), if so, then turn fan on.
-            computeTemp = 110
-            if (computeTemp > self.Temperature):
+            
+            if (self.ComputeTemperature > self.Temperature):
                 if platform == 'linux' or platform == 'linux2':
                     GPIO.output(17, GPIO.LOW)
             else:

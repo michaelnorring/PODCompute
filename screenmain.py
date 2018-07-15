@@ -131,6 +131,10 @@ class TemperatureControl(Widget):
         else:           
             temp_f = float(temperature) * 9.0 / 5.0 + 32.0
             temp_f = round(temp_f, 1)
+
+        if(self.configdialog != None and temp_f != "--"):
+            self.manager.ComputeTemperatureService.ComputeTemperature = int(temp_f)
+
         tempLabel = self.ids['TemperatureLabel']
         tempLabel.text = str(temp_f) + u"\u00b0"
     

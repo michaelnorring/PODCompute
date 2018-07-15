@@ -103,7 +103,7 @@ class Alarm(Widget):
     fullAlarmTime = ''
     timer = None
     snoozeInterval = 8
-    clockInterval = 60
+    clockInterval = 30
     
     def __init__(self, **kwargs):
         self.register_event_type('on_alarmFire')
