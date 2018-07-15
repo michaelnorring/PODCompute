@@ -9,6 +9,8 @@ from kivy.properties import ObjectProperty
 from kivy.properties import StringProperty
 from kivy.uix.image import Image
 
+from computetemperatureconfig import *
+
 from sys import platform
 import time
 import requests
@@ -29,8 +31,6 @@ class ScreenMain(Screen):
         super(ScreenMain, self).__init__(**kwargs)
         Clock.schedule_interval(self.updateTemperature, 5)
         self.SetupComputeTemp()
-
-
 
     def SetupComputeTemp(self):
         global computeTempLocation
@@ -73,6 +73,8 @@ class ScreenMain(Screen):
         
         computeTempLabel = self.ids['ComputeTemperatureControl']
         computeTempLabel.setTemperature(computeTemp)
+        if(computeTempLabel.configdialog == None):
+            computeTempLabel.configdialog = ComputeTemperatureConfig()
 
         try:
             if platform == 'linux' or 'linux2':
@@ -121,6 +123,7 @@ class ClockControl(Widget):
 class TemperatureControl(Widget):
     manager = ObjectProperty()
     temperatureLabel = StringProperty()
+    configdialog = ObjectProperty(None)
 
     def setTemperature(self, temperature):
         if temperature == '--':
@@ -135,6 +138,24 @@ class TemperatureControl(Widget):
         humidityLabel = self.ids['HumidityLabel']
         humidityLabel.text = 'Humidity: ' + str(humidity) + ' %'
 
+    def TemperatureConfig(self):
+        if(self.configdialog != None):
+            content = self.configdialog 
+            content.manager = self.manager
+            content.SetupScreen()
+            content.bind(on_update=self._on_computetempupdate)
+            self.popup = Popup(title='Set ' + self.temperatureLabel,
+                                content=content,
+                                size_hint=(None, None),
+                                size=(600,480),
+                                auto_dismiss= False)
+            self.popup.open()
     
+    def _on_computetempupdate(self, instance, answer, *args):
+        self.popup.content.parent.remove_widget(self.popup.content)
+        self.popup.dismiss()
+        if answer == 'yes':
+            print args[0][0]
+            print args[0][1]
         
     

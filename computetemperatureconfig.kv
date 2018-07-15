@@ -1,0 +1,46 @@
+#:kivy 1.10.1
+
+<ComputeTemperatureConfig>:
+    BoxLayout:
+        orientation: 'vertical'
+    
+        BoxLayout:
+            id: ConfigContent
+
+            Widget:
+
+            Roulette:
+                id: TemperatureRoulette
+                density: 7
+                
+            Widget:
+
+            ToggleButton:
+                id: OnOffButton
+                size: (100,100)
+                size_hint: (None, None)
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                on_press: root.on_ONOFFClick()
+
+            Widget:
+                 
+        BoxLayout:
+            orientation: 'horizontal'
+            
+            Button:
+                text: 'Save'
+                size: 100,100
+                size_hint: None, None                  
+                on_press: root.saveTemperatureConfig()
+            Widget:
+            Button:
+                text: 'Cancel'
+                size: 100,100
+                size_hint: None, None
+                on_release: root.cancelTemperatureConfig()
+        
+        
+            
+
+
+
