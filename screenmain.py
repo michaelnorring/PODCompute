@@ -29,7 +29,7 @@ class ScreenMain(Screen):
 
     def __init__(self, **kwargs):
         super(ScreenMain, self).__init__(**kwargs)
-        Clock.schedule_interval(self.updateTemperature, 5)
+        Clock.schedule_interval(self.updateTemperature, 60)
         self.SetupComputeTemp()
 
     def SetupComputeTemp(self):
